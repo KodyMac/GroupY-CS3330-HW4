@@ -1,10 +1,19 @@
 package hw4;
 
+import hw4.FuelType;
+import hw4.StartMechanism;
+import hw4.VehicleColor;
+
 public abstract class Vehicle {
-//	protected attributes/fields brand(String),
-//	make(String), modelYear(long), price(double), color(VehicleColor), fuelType(FuelType),
-//	mileage(double), mass(double), cylinders(int), gasTankCapacity(double),
-//	startType(StartMechanism). The color, fuelType, and startType must be represented using an
-//	enum
-	//the rest is on the assignment pdf
+		protected String brand;
+		protected String make;
+		protected long modelYear;
+		protected double price;
+		protected VehicleColor color;
+		protected FuelType fuelType;
+		protected double mileage;
+		protected double mass;
+		protected int cylinders;
+		protected double gasTankCapacity;
+		protected StartMechanism startType;
 }

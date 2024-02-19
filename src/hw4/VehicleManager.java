@@ -6,11 +6,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import hw3.CDRecordProduct;
-import hw3.Genre;
-import hw3.MediaProduct;
-import hw3.TapeRecordProduct;
-import hw3.VinylRecordProduct;
 
 public class VehicleManager {
 	private final static String vehicleFilePath="files/vehicleList.csv";
@@ -45,9 +40,9 @@ public class VehicleManager {
 				if (type.equals("Truck")) {
 						vehicle = new Truck(brand, make, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTankCapacity, startType);
 				} else if (type.equals("Car")) {
-				
+					    vehicle = new Car(brand, make, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTankCapacity, startType);
 					
-					/*	product = new VinylRecordProduct(title, price, year, genre);
+					/*
 				} else if (type.equals("SUV")) {
 					product = new TapeRecordProduct(title, price, year, genre);
 				} else if (type.equals("MotorBike")) {
