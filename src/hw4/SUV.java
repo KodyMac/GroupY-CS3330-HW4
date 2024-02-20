@@ -38,16 +38,23 @@ public class SUV extends Vehicle{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+//	maintenanceCost=distance * mass
+//			* (currentYear-modelYear) *
+//			cylinders * 0.001
 
 	@Override
 	public double calculateFuelEfficiency(double distance, double fuelPrice) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+//	fuelEfficiency = cylinders *
+//			gasTankCapacity * fuelPrice /
+//			distance * 0.05
 
 	@Override
 	public void startEngine() {
 		// TODO Auto-generated method stub
 		
 	}
+	//PUSHSTART
 }
