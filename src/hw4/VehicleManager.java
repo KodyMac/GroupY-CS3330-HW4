@@ -14,10 +14,10 @@ public class VehicleManager {
 	private final static String vehicleFilePath="files/vehicleList.csv";
 	private List<Vehicle> vehicleList = new ArrayList<>();
 	//to-do
-	public boolean readFromFile(String fileName) {
+	public boolean initializeStock() {   //check if this still completes new reqs
 		try {
 			List < List <String> > data = new ArrayList<>();
-			BufferedReader br = new BufferedReader(new FileReader(/*fileName*/vehicleFilePath));
+			BufferedReader br = new BufferedReader(new FileReader(vehicleFilePath));
 			br.readLine();
 			String line = br.readLine();
 			while (line != null) {
@@ -91,7 +91,7 @@ public class VehicleManager {
 			
 			
 	
-	public void VehicleManager(String fileName);
+	public void VehicleManager();
 	public void displayAllCarInformation();
 	public void displayAllTruckInformation();
 	public void displayAllSUVInformation();
