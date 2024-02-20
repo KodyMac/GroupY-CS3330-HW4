@@ -1,5 +1,7 @@
 package hw4;
 
+import java.time.LocalDate;
+
 public class Car extends Vehicle{
 		public Car(String brand, String make, long modelYear, double price, VehicleColor color, FuelType fuelType, double mileage, double mass, int cylinders, double gasTankCapacity, StartMechanism startType) {
 		
@@ -35,7 +37,13 @@ public class Car extends Vehicle{
 
 		@Override
 		public double calculateMaintenaceCost(double distance) {
-			return 0;
+			double maintCost;
+			double maintNum = 0.0005;
+			LocalDate date = LocalDate.now();
+			int thisYear = date.getYear();
+			maintCost = distance * this.mass * (thisYear - this.modelYear) * this.cylinders * maintNum;
+
+			return maintCost;
 		}
 //		maintenanceCost=distance * mass
 //				* (currentYear-modelYear) *
@@ -43,7 +51,9 @@ public class Car extends Vehicle{
 
 		@Override
 		public double calculateFuelEfficiency(double distance, double fuelPrice) {
-			return 0;
+			double fuelNum = 0.003;
+			double fuelEff = this.cylinders * this.gasTankCapacity * (fuelPrice / distance) * fuelNum;
+			return fuelEff;
 		}
 		//fuelEfficiency = cylinders *
 		//gasTankCapacity * fuelPrice /
