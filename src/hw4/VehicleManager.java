@@ -1,10 +1,13 @@
 package hw4;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+
 
 
 public class VehicleManager {
@@ -37,41 +40,57 @@ public class VehicleManager {
 				StartMechanism startType = StartMechanism.valueOf(list.get(11));
 				
 				Vehicle vehicle = null;
-				if (type.equals("Truck")) {
-						vehicle = new Truck(brand, make, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTankCapacity, startType);
-				} else if (type.equals("Car")) {
-					    vehicle = new Car(brand, make, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTankCapacity, startType);
-					
-					/*
-				} else if (type.equals("SUV")) {
-					product = new TapeRecordProduct(title, price, year, genre);
-				} else if (type.equals("MotorBike")) {
-					product = new recordproduct(title,price,year,genre);
-				} else {
-					System.out.println("Invalid type");
+				switch(type)
+				{
+				case "Truck":
+				{
+					Truck truck = new Truck(brand, make, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTankCapacity, startType);
+					vehicleList.add(truck);
+					break;
 				}
-				
-				if (product != null) {
-					productList.add(product);
+				case "Car":
+				{
+					Car car = new Car(brand, make, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTankCapacity, startType);
+					vehicleList.add(car);
+					break;
 				}
-				//System.out.println(product); test
+				case "SUV":
+				{
+					SUV suv = new SUV(brand, make, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTankCapacity, startType);
+					vehicleList.add(suv);
+					break;
+				}
+				case "MotorBike":
+				{
+					MotorBike motorBike = new MotorBike(brand, make, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTankCapacity, startType);
+					vehicleList.add(motorBike);
+					break;
+				}
+				default:
+				{
+					System.out.println("Invalid Vehicle Type");
+					break;
+				}
 			}
-			
-			br.close();
 		}
-		catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
+	}		
+	catch(FileNotFoundException e) {
+		e.printStackTrace();
+		return false;
+	}
 		return true;
-	}
+}
+
+				
+				
+					
+					
+					
+				
 			
-			*/
 			
 			
-			
-	}
+	
 	public void VehicleManager(String fileName);
 	public void displayAllCarInformation();
 	public void displayAllTruckInformation();
@@ -89,4 +108,4 @@ public class VehicleManager {
 	public ArrayList<Vehicle> getVehicleWithHighestFuelEfficiency(double distance, double fuelPrice);
 	public ArrayList<Vehicle> getVehicleWithLowestFuelEfficiency(double distance, double fuelPrice);
 	public double getAverageFuelEfficiencyOfSUVs(double distance, double fuelPrice);
-}
+
