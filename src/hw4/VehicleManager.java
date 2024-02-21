@@ -9,7 +9,6 @@ import java.util.List;
 
 
 
-
 public class VehicleManager {
 	private static VehicleManager instance = null;  //instance
 	private final static String vehicleFilePath="files/vehicleList.csv";   //filepath
@@ -86,19 +85,55 @@ public class VehicleManager {
 }
 
 	public void displayAllCarInformation() {
-		
+		int num=0;
+		for(Vehicle vehicle : vehicleList) {
+			if(vehicle instanceof Car) {
+				System.out.println(vehicle.toString() + "Maintenance Cost: " + vehicle.calculateMaintenaceCost(distance) + "Fuel Efficiency: " + vehicle.calculateFuelEfficiency(distance, fuelPrice) );
+				num++;
+			}
+		}
+		if(num==0) {
+			System.out.println("There are no Cars");
+		}
 	}
 	
 	public void displayAllTruckInformation() {
-		
+		int num=0;
+		for(Vehicle vehicle : vehicleList) {
+			if(vehicle instanceof Truck) {
+				System.out.println(vehicle.toString() + "Maintenance Cost: " + vehicle.calculateMaintenaceCost(distance) + "Fuel Efficiency: " + vehicle.calculateFuelEfficiency(distance, fuelPrice) );
+				num++;
+			}
+		}
+		if(num==0) {
+			System.out.println("There are no Trucks");
+		}
 	}
 	
 	public void displayAllSUVInformation() {
-		
+		int num=0;
+		for(Vehicle vehicle : vehicleList) {
+			if(vehicle instanceof SUV) {
+				System.out.println(vehicle.toString() + "Maintenance Cost: " + vehicle.calculateMaintenaceCost(distance) + "Fuel Efficiency: " + vehicle.calculateFuelEfficiency(distance, fuelPrice) );
+				num++;
+			}
+		}
+		if(num==0) {
+			System.out.println("There are no SUVs");
+		}
 	}
 	
 	public void displayAllMotorBikeInformation() {
-		
+		int num=0;
+		for(Vehicle vehicle : vehicleList) {
+			if(vehicle instanceof MotorBike) {
+				System.out.println(vehicle.toString() + "Maintenance Cost: " + vehicle.calculateMaintenaceCost(distance) + "Fuel Efficiency: " + vehicle.calculateFuelEfficiency(distance, fuelPrice) );
+				num++;
+			}
+		}
+		if(num==0) {
+			System.out.println("There are no Motor Bikes");
+		}
 	}
 	
 	public void displayVehicleInformation(Vehicle v) {
@@ -148,6 +183,7 @@ public class VehicleManager {
 	public double getAverageFuelEfficiencyOfSUVs(double distance, double fuelPrice) {
 		
 	}
+}
 	
 	
 	//public void VehicleManager();
