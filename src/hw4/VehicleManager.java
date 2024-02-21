@@ -137,19 +137,21 @@ public class VehicleManager {
 	}
 	
 	public void displayVehicleInformation(Vehicle v) {
-		
+		System.out.println(v.toString());
 	}
 	
 	public void displayAllVehicleInformation() {
-		
+		for(Vehicle vehicle : vehicleList) {
+				System.out.println(vehicle.toString() + "Maintenance Cost: " + vehicle.calculateMaintenaceCost(distance) + "Fuel Efficiency: " + vehicle.calculateFuelEfficiency(distance, fuelPrice) );
+			}
 	}
 	
 	public boolean removeVehicle(Vehicle vehicle) {
-		
+		return vehicleList.remove(vehicle);
 	}
 	
 	public boolean addVehicle(Vehicle vehicle) {
-		
+		return vehicleList.add(vehicle);
 	}
 	
 	public boolean saveVehicleList() {
@@ -157,11 +159,17 @@ public class VehicleManager {
 	}
 	
 	private boolean isVehicleType(Vehicle v, Class clazz) {
-		
+		return v.getClass().equals(clazz);
 	}
 	
 	public int getNumberOfVehiclesByType(Class clazz) {
-		
+		int num = 0;
+		for(Vehicle v : vehicleList) {
+			if(isVehicleType(v,clazz)) {
+				num++;
+			}
+		}
+		return num;
 	}
 	
 	public Vehicle getVehicleWIthHighestMaintenanceCost(double distance) {
