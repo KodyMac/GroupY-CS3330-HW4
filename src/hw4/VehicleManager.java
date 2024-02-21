@@ -13,7 +13,10 @@ import java.util.List;
 public class VehicleManager {
 	private static VehicleManager instance = null;  //instance
 	private final static String vehicleFilePath="files/vehicleList.csv";   //filepath
+	private final static double distance = 300;
+	private final static double fuelPrice = 3.25;
 	private List<Vehicle> vehicleList = new ArrayList<>();    //vehicle list
+	
 	//to-do
 	public boolean initializeStock() {
 		try {
@@ -145,6 +148,7 @@ public class VehicleManager {
 	public double getAverageFuelEfficiencyOfSUVs(double distance, double fuelPrice) {
 		
 	}
+	
 	
 	//public void VehicleManager();
 
