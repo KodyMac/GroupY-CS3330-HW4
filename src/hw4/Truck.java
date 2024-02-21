@@ -153,4 +153,12 @@ public class Truck extends Vehicle{
 		
 	}
 	//KEYSTART
+
+	@Override
+	public String toString() {
+		return "Truck [brand=" + brand + ", make=" + make + ", modelYear=" + modelYear + ", price=" + price + ", color="
+				+ color + ", fuelType=" + fuelType + ", mileage=" + mileage + ", mass=" + mass + ", cylinders="
+				+ cylinders + ", gasTankCapacity=" + gasTankCapacity + ", startType=" + startType + "]";
+	}
 }
+

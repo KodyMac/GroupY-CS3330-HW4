@@ -153,4 +153,12 @@ public class SUV extends Vehicle{
 		
 	}
 	//PUSHSTART
+
+	@Override
+	public String toString() {
+		return "SUV [brand=" + brand + ", make=" + make + ", modelYear=" + modelYear + ", price=" + price + ", color="
+				+ color + ", fuelType=" + fuelType + ", mileage=" + mileage + ", mass=" + mass + ", cylinders="
+				+ cylinders + ", gasTankCapacity=" + gasTankCapacity + ", startType=" + startType + "]";
+	}
 }
+

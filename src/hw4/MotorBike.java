@@ -149,8 +149,17 @@ public class MotorBike extends Vehicle{
 
 	@Override
 	public void startEngine() {
-		// TODO Auto-generated method stub
 		
 	}
 	//KICKSTART
+
+	@Override
+	public String toString() {
+		return "MotorBike [brand=" + brand + ", make=" + make + ", modelYear=" + modelYear + ", price=" + price
+				+ ", color=" + color + ", fuelType=" + fuelType + ", mileage=" + mileage + ", mass=" + mass
+				+ ", cylinders=" + cylinders + ", gasTankCapacity=" + gasTankCapacity + ", startType=" + startType
+				+ "]";
+	}
 }
+
+

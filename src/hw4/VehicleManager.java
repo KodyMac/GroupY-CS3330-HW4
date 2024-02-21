@@ -11,10 +11,11 @@ import java.util.List;
 
 
 public class VehicleManager {
-	private final static String vehicleFilePath="files/vehicleList.csv";
-	private List<Vehicle> vehicleList = new ArrayList<>();
+	private static VehicleManager instance = null;  //instance
+	private final static String vehicleFilePath="files/vehicleList.csv";   //filepath
+	private List<Vehicle> vehicleList = new ArrayList<>();    //vehicle list
 	//to-do
-	public boolean initializeStock() {   //check if this still completes new reqs
+	public boolean initializeStock() {
 		try {
 			List < List <String> > data = new ArrayList<>();
 			BufferedReader br = new BufferedReader(new FileReader(vehicleFilePath));
@@ -81,31 +82,69 @@ public class VehicleManager {
 		return true;
 }
 
-				
-				
-					
-					
-					
-				
-			
-			
-			
+	public void displayAllCarInformation() {
+		
+	}
 	
-	public void VehicleManager();
-	public void displayAllCarInformation();
-	public void displayAllTruckInformation();
-	public void displayAllSUVInformation();
-	public void displayAllMotorBikeInformation();
-	public void displayVehicleInformation(Vehicle v);
-	public void displayAllVehicleInformation();
-	public boolean removeVehicle(Vehicle vehicle);
-	public boolean addVehicle(Vehicle vehicle);
-	public boolean saveVehicleList();
-	private boolean isVehicleType(Vehicle v, Class clazz);
-	public int getNumberOfVehiclesByType(Class clazz);
-	public Vehicle getVehicleWIthHighestMaintenanceCost(double distance);
-	public Vehicle getVehicleWithLowestMaintenanceCost(double distance);
-	public ArrayList<Vehicle> getVehicleWithHighestFuelEfficiency(double distance, double fuelPrice);
-	public ArrayList<Vehicle> getVehicleWithLowestFuelEfficiency(double distance, double fuelPrice);
-	public double getAverageFuelEfficiencyOfSUVs(double distance, double fuelPrice);
+	public void displayAllTruckInformation() {
+		
+	}
+	
+	public void displayAllSUVInformation() {
+		
+	}
+	
+	public void displayAllMotorBikeInformation() {
+		
+	}
+	
+	public void displayVehicleInformation(Vehicle v) {
+		
+	}
+	
+	public void displayAllVehicleInformation() {
+		
+	}
+	
+	public boolean removeVehicle(Vehicle vehicle) {
+		
+	}
+	
+	public boolean addVehicle(Vehicle vehicle) {
+		
+	}
+	
+	public boolean saveVehicleList() {
+		
+	}
+	
+	private boolean isVehicleType(Vehicle v, Class clazz) {
+		
+	}
+	
+	public int getNumberOfVehiclesByType(Class clazz) {
+		
+	}
+	
+	public Vehicle getVehicleWIthHighestMaintenanceCost(double distance) {
+		
+	}
+	
+	public Vehicle getVehicleWithLowestMaintenanceCost(double distance) {
+		
+	}
+	
+	public ArrayList<Vehicle> getVehicleWithHighestFuelEfficiency(double distance, double fuelPrice) {
+		
+	}
+	
+	public ArrayList<Vehicle> getVehicleWithLowestFuelEfficiency(double distance, double fuelPrice) {
+		
+	}
+	
+	public double getAverageFuelEfficiencyOfSUVs(double distance, double fuelPrice) {
+		
+	}
+	
+	//public void VehicleManager();
 

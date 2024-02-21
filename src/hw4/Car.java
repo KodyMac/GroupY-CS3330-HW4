@@ -3,6 +3,7 @@ package hw4;
 import java.time.LocalDate;
 
 public class Car extends Vehicle{
+
 		public Car(String brand, String make, long modelYear, double price, VehicleColor color, FuelType fuelType, double mileage, double mass, int cylinders, double gasTankCapacity, StartMechanism startType) {
 		
 			super();
@@ -153,11 +154,10 @@ public class Car extends Vehicle{
 		}
 }
 		//PUSHSTART
-			
-			
-			
-			
-			
-			
-			
-		
+
+@Override
+public String toString() {
+	return "Car [brand=" + brand + ", make=" + make + ", modelYear=" + modelYear + ", price=" + price + ", color="
+			+ color + ", fuelType=" + fuelType + ", mileage=" + mileage + ", mass=" + mass + ", cylinders="
+			+ cylinders + ", gasTankCapacity=" + gasTankCapacity + ", startType=" + startType + "]";
+}
