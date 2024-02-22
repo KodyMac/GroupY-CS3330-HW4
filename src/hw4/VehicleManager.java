@@ -210,15 +210,62 @@ public class VehicleManager {
 	}
 	
 	public Vehicle getVehicleWIthHighestMaintenanceCost(double distance) {
+		double highest = 0;
+		double holder;
+		int highIndex = 0;
+		int index = 0;
 		
+		for(Vehicle v : vehicleList) {
+			holder = v.calculateMaintenaceCost(distance);
+			if(holder>highest) {
+				highest = holder;
+				highIndex = index;
+			}
+			index++;
+		}
+		return vehicleList.get(highIndex);
 	}
 	
 	public Vehicle getVehicleWithLowestMaintenanceCost(double distance) {
+		double lowest = 0;
+		double holder;
+		int lowIndex = 0;
+		int index = 0;
 		
+		for(Vehicle v : vehicleList) {
+			holder = v.calculateMaintenaceCost(distance);
+			if(holder<lowest) {
+				lowest = holder;
+				lowIndex = index;
+			}
+			index++;
+		}
+		return vehicleList.get(lowIndex);
 	}
 	
 	public ArrayList<Vehicle> getVehicleWithHighestFuelEfficiency(double distance, double fuelPrice) {
-		
+		double highest = 0;
+		double holder;
+		int highIndex = 0;
+		int index = 0;
+		ArrayList<Vehicle> list = new ArrayList<>();
+		int listIndex = 0;
+		for(Vehicle v : vehicleList) {
+			holder = v.calculateFuelEfficiency(distance, fuelPrice);
+			if(holder>highest) {
+				highest = holder;
+				highIndex = index;
+			}
+			index++;
+		}
+		list.add(vehicleList.get(highIndex));
+		for(Vehicle v : vehicleList) {
+			holder = v.calculateFuelEfficiency(distance, fuelPrice);
+			if(holder == list.get(1).calculateFuelEfficiency(distance, fuelPrice)) {
+				list.add(v);
+			}
+		}
+		return list;
 	}
 	
 	public ArrayList<Vehicle> getVehicleWithLowestFuelEfficiency(double distance, double fuelPrice) {
