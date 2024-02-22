@@ -10,7 +10,7 @@ public class Main {
 		// TODO
 		
 		// Display all vehicle information.
-		// TODO
+		vehicleManager.displayAllVehicleInformation();
 		
 		// Display all car information.
 		// TODO

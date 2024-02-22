@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.io.FileWriter;
+import java.util.Random;
 
 
 
@@ -209,12 +210,49 @@ public class VehicleManager {
 		return num;
 	}
 	
+	//unsure if this is correct unable to run project
 	public Vehicle getVehicleWIthHighestMaintenanceCost(double distance) {
+		Random random = new Random();
+		double highestMaintCost = 0;
+		Vehicle highMaintVehicle = null;
+		int count = 0;
 		
+		for (Vehicle vehicle: vehicleList) {
+			double maintCost = vehicle.calculateMaintenenceCost(distance);
+			if (maintCost > highestMaintCost) {
+				highMaintVehicle = vehicle;
+				highestMaintCost = maintCost;
+				count = 1;
+			} else if (maintCost == highestMaintCost) {
+				count++;
+				if (random.nextInt(count) == 0) {
+					highMaintVehicle = vehicle;
+				}
+			}
+		}
+		return highMaintVehicle;
 	}
 	
 	public Vehicle getVehicleWithLowestMaintenanceCost(double distance) {
+		Random random = new Random();
+		double lowestMaintCost = 1000000;
+		Vehicle lowMaintVehicle = null;
+		int count = 0;
 		
+		for (Vehicle vehicle: vehicleList) {
+			double maintCost = vehicle.calculateMaintenenceCost(distance);
+			if (maintCost < lowestMaintCost) {
+				lowMaintVehicle = vehicle;
+				lowestMaintCost = maintCost;
+				count = 1;
+			} else if (maintCost == lowestMaintCost) {
+				count++;
+				if (random.nextInt(count) == 0) {
+					lowMaintVehicle = vehicle;
+				}
+			}
+		}
+		return lowMaintVehicle;
 	}
 	
 	public ArrayList<Vehicle> getVehicleWithHighestFuelEfficiency(double distance, double fuelPrice) {
