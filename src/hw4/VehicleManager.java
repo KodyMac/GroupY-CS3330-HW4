@@ -237,6 +237,7 @@ public class VehicleManager {
 		double holder;
 		int lowIndex = 0;
 		int index = 0;
+		Random random = new Random();
 
 		for(Vehicle v : vehicleList) {
 			holder = v.calculateMaintenaceCost(distance);
@@ -279,7 +280,29 @@ public class VehicleManager {
 	}
 	
 	public ArrayList<Vehicle> getVehicleWithLowestFuelEfficiency(double distance, double fuelPrice) {
+		double lowest = 100000; 
+		double holder;
+		int lowIndex = 0;
+		int index = 0;
+		ArrayList<Vehicle> list = new ArrayList<>();
+		int listIndex = 0;
+		for(Vehicle v : vehicleList) {
+			holder = v.calculateFuelEfficiency(distance, fuelPrice);
+			if(holder<lowest) {
+				lowest = holder;
+				lowIndex = index;
+			}
+			index++;
+		}
+		list.add(vehicleList.get(lowIndex));
 		
+		for(Vehicle v : vehicleList) {
+			holder = v.calculateFuelEfficiency(distance, fuelPrice);
+			if(holder == list.get(1).calculateFuelEfficiency(distance, fuelPrice)) {
+				list.add(v);
+			}
+		}
+		return list;
 	}
 	
 	public double getAverageFuelEfficiencyOfSUVs(double distance, double fuelPrice) {
