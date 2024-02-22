@@ -306,9 +306,22 @@ public class VehicleManager {
 	}
 	
 	public double getAverageFuelEfficiencyOfSUVs(double distance, double fuelPrice) {
+		double total = 0;
+		int count = 0;
 		
+		for (Vehicle v : vehicleList) {
+			if (isVehicleType(v, SUV.class)) {
+				total += v.calculateFuelEfficiency(distance, fuelPrice);
+				count ++;
+			} 
+		}
+		if (count == 0) {
+			return -1.0;
+		} else {
+			double avg = total/count;
+			return avg;
+		}
 	}
-}
 	
 	
 	//public void VehicleManager();
