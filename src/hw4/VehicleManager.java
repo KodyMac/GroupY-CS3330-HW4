@@ -169,19 +169,19 @@ public class VehicleManager {
 
             for (Vehicle vehicle : vehicleList) {
                 if (vehicle instanceof Car) {
-                    writer.write("Car, " + vehicle.getModel() + "," + vehicle.getMake() + "," + vehicle.getModelYear()
+                    writer.write("Car, " + vehicle.getBrand() + "," + vehicle.getMake() + "," + vehicle.getModelYear()
                             + "," + vehicle.getPrice() + "," + vehicle.getColor() + "," + vehicle.getFuelType + "," + vehicle.getMileage() +
                             "," + vehicle.getMass() + "," + vehicle.getCylinders() + "," + vehicle.getGasTankCapacity() + "," + vehicle.getStartType() + System.getProperty("line.separator"));
                 } else if (vehicle instanceof Truck) {
-                	writer.write("Truck, " + vehicle.getModel() + "," + vehicle.getMake() + "," + vehicle.getModelYear()
+                	writer.write("Truck, " + vehicle.getBrand() + "," + vehicle.getMake() + "," + vehicle.getModelYear()
                     + "," + vehicle.getPrice() + "," + vehicle.getColor() + "," + vehicle.getFuelType + "," + vehicle.getMileage() +
                     "," + vehicle.getMass() + "," + vehicle.getCylinders() + "," + vehicle.getGasTankCapacity() + "," + vehicle.getStartType() + System.getProperty("line.separator"));
                 } else if (vehicle instanceof MotorBike){
-                	writer.write("MotorBike, " + vehicle.getModel() + "," + vehicle.getMake() + "," + vehicle.getModelYear()
+                	writer.write("MotorBike, " + vehicle.getBrand() + "," + vehicle.getMake() + "," + vehicle.getModelYear()
                     + "," + vehicle.getPrice() + "," + vehicle.getColor() + "," + vehicle.getFuelType + "," + vehicle.getMileage() +
                     "," + vehicle.getMass() + "," + vehicle.getCylinders() + "," + vehicle.getGasTankCapacity() + "," + vehicle.getStartType() + System.getProperty("line.separator"));
                 } else {
-                	writer.write("SUV, " + vehicle.getModel() + "," + vehicle.getMake() + "," + vehicle.getModelYear()
+                	writer.write("SUV, " + vehicle.getBrand() + "," + vehicle.getMake() + "," + vehicle.getModelYear()
                     + "," + vehicle.getPrice() + "," + vehicle.getColor() + "," + vehicle.getFuelType + "," + vehicle.getMileage() +
                     "," + vehicle.getMass() + "," + vehicle.getCylinders() + "," + vehicle.getGasTankCapacity() + "," + vehicle.getStartType() + System.getProperty("line.separator"));
                 }
