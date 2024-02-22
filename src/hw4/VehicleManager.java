@@ -209,54 +209,73 @@ public class VehicleManager {
 		}
 		return num;
 	}
-	
-	//unsure if this is correct unable to run project
+
 	public Vehicle getVehicleWIthHighestMaintenanceCost(double distance) {
+		double highest = 0;
+		double holder;
+		int highIndex = 0;
+		int index = 0;
 		Random random = new Random();
-		double highestMaintCost = 0;
-		Vehicle highMaintVehicle = null;
-		int count = 0;
-		
-		for (Vehicle vehicle: vehicleList) {
-			double maintCost = vehicle.calculateMaintenenceCost(distance);
-			if (maintCost > highestMaintCost) {
-				highMaintVehicle = vehicle;
-				highestMaintCost = maintCost;
-				count = 1;
-			} else if (maintCost == highestMaintCost) {
-				count++;
-				if (random.nextInt(count) == 0) {
-					highMaintVehicle = vehicle;
+
+		for(Vehicle v : vehicleList) {
+			holder = v.calculateMaintenaceCost(distance);
+			if(holder>highest) {
+				highest = holder;
+				highIndex = index;
+			} else if (holder == highest) {
+				index++;
+				if(random.nextInt(index)) {
+					highest = holder;
 				}
 			}
 		}
-		return highMaintVehicle;
+		return vehicleList.get(highIndex);
 	}
-	
+
 	public Vehicle getVehicleWithLowestMaintenanceCost(double distance) {
-		Random random = new Random();
-		double lowestMaintCost = 1000000;
-		Vehicle lowMaintVehicle = null;
-		int count = 0;
-		
-		for (Vehicle vehicle: vehicleList) {
-			double maintCost = vehicle.calculateMaintenenceCost(distance);
-			if (maintCost < lowestMaintCost) {
-				lowMaintVehicle = vehicle;
-				lowestMaintCost = maintCost;
-				count = 1;
-			} else if (maintCost == lowestMaintCost) {
-				count++;
-				if (random.nextInt(count) == 0) {
-					lowMaintVehicle = vehicle;
+		double lowest = 0;
+		double holder;
+		int lowIndex = 0;
+		int index = 0;
+
+		for(Vehicle v : vehicleList) {
+			holder = v.calculateMaintenaceCost(distance);
+			if(holder<lowest) {
+				lowest = holder;
+				lowIndex = index;
+			} else if (holder == lowest) {
+				index++;
+				if(random.nextInt(lowIndex)) {
+					lowest = holder;
 				}
 			}
 		}
-		return lowMaintVehicle;
+		return vehicleList.get(lowIndex);
 	}
 	
 	public ArrayList<Vehicle> getVehicleWithHighestFuelEfficiency(double distance, double fuelPrice) {
-		
+		double highest = 0;
+		double holder;
+		int highIndex = 0;
+		int index = 0;
+		ArrayList<Vehicle> list = new ArrayList<>();
+		int listIndex = 0;
+		for(Vehicle v : vehicleList) {
+			holder = v.calculateFuelEfficiency(distance, fuelPrice);
+			if(holder>highest) {
+				highest = holder;
+				highIndex = index;
+			}
+			index++;
+		}
+		list.add(vehicleList.get(highIndex));
+		for(Vehicle v : vehicleList) {
+			holder = v.calculateFuelEfficiency(distance, fuelPrice);
+			if(holder == list.get(1).calculateFuelEfficiency(distance, fuelPrice)) {
+				list.add(v);
+			}
+		}
+		return list;
 	}
 	
 	public ArrayList<Vehicle> getVehicleWithLowestFuelEfficiency(double distance, double fuelPrice) {
