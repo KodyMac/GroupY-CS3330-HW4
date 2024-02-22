@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.io.FileWriter;
 
 
 
@@ -154,8 +155,44 @@ public class VehicleManager {
 		return vehicleList.add(vehicle);
 	}
 	
+	//used last week's homework as an example, not sure if this is right
 	public boolean saveVehicleList() {
-		
+		try (FileWriter writer = new FileWriter(vehicleFilePath)) {
+            String[] headers = { "Type", "Model", "Make", "ModelYear", "Price", "Color", "FuelType", "Mileage", "Mass", "Cylinders", "GasTankCapacity", "StartType"};
+            for (int i = 0; i < headers.length; i++) {
+                writer.append(headers[i]);
+                if (i < headers.length - 1) {
+                    writer.append(", ");
+                }
+            }
+            writer.append(System.getProperty("line.separator"));
+
+            for (Vehicle vehicle : vehicleList) {
+                if (vehicle instanceof Car) {
+                    writer.write("Car, " + vehicle.getModel() + "," + vehicle.getMake() + "," + vehicle.getModelYear()
+                            + "," + vehicle.getPrice() + "," + vehicle.getColor() + "," + vehicle.getFuelType + "," + vehicle.getMileage() +
+                            "," + vehicle.getMass() + "," + vehicle.getCylinders() + "," + vehicle.getGasTankCapacity() + "," + vehicle.getStartType() + System.getProperty("line.separator"));
+                } else if (vehicle instanceof Truck) {
+                	writer.write("Truck, " + vehicle.getModel() + "," + vehicle.getMake() + "," + vehicle.getModelYear()
+                    + "," + vehicle.getPrice() + "," + vehicle.getColor() + "," + vehicle.getFuelType + "," + vehicle.getMileage() +
+                    "," + vehicle.getMass() + "," + vehicle.getCylinders() + "," + vehicle.getGasTankCapacity() + "," + vehicle.getStartType() + System.getProperty("line.separator"));
+                } else if (vehicle instanceof MotorBike){
+                	writer.write("MotorBike, " + vehicle.getModel() + "," + vehicle.getMake() + "," + vehicle.getModelYear()
+                    + "," + vehicle.getPrice() + "," + vehicle.getColor() + "," + vehicle.getFuelType + "," + vehicle.getMileage() +
+                    "," + vehicle.getMass() + "," + vehicle.getCylinders() + "," + vehicle.getGasTankCapacity() + "," + vehicle.getStartType() + System.getProperty("line.separator"));
+                } else {
+                	writer.write("SUV, " + vehicle.getModel() + "," + vehicle.getMake() + "," + vehicle.getModelYear()
+                    + "," + vehicle.getPrice() + "," + vehicle.getColor() + "," + vehicle.getFuelType + "," + vehicle.getMileage() +
+                    "," + vehicle.getMass() + "," + vehicle.getCylinders() + "," + vehicle.getGasTankCapacity() + "," + vehicle.getStartType() + System.getProperty("line.separator"));
+                }
+            }
+            return true;
+        } catch (IOException e) {
+            System.out.println("File not saved");
+            e.printStackTrace();
+            return false;
+        }
+    }
 	}
 	
 	private boolean isVehicleType(Vehicle v, Class clazz) {
