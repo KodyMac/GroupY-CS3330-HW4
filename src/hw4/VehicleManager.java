@@ -78,13 +78,13 @@ public class VehicleManager {
 				}
 			}
 		}
-	}		
-	catch(FileNotFoundException e) {
-		e.printStackTrace();
-		return false;
-	}
+		br.close();
+		} catch(IOException e) {
+			e.printStackTrace();
+			return false;
+		}
 		return true;
-}
+	}
 
 	public void displayAllCarInformation() {
 		int num=0;
@@ -168,23 +168,23 @@ public class VehicleManager {
             }
             writer.append(System.getProperty("line.separator"));
 
-            for (Vehicle vehicle : vehicleList) {
-                if (vehicle instanceof Car) {
-                    writer.write("Car, " + vehicle.getBrand() + "," + vehicle.getMake() + "," + vehicle.getModelYear()
-                            + "," + vehicle.getPrice() + "," + vehicle.getColor() + "," + vehicle.getFuelType + "," + vehicle.getMileage() +
-                            "," + vehicle.getMass() + "," + vehicle.getCylinders() + "," + vehicle.getGasTankCapacity() + "," + vehicle.getStartType() + System.getProperty("line.separator"));
-                } else if (vehicle instanceof Truck) {
-                	writer.write("Truck, " + vehicle.getBrand() + "," + vehicle.getMake() + "," + vehicle.getModelYear()
-                    + "," + vehicle.getPrice() + "," + vehicle.getColor() + "," + vehicle.getFuelType + "," + vehicle.getMileage() +
-                    "," + vehicle.getMass() + "," + vehicle.getCylinders() + "," + vehicle.getGasTankCapacity() + "," + vehicle.getStartType() + System.getProperty("line.separator"));
-                } else if (vehicle instanceof MotorBike){
-                	writer.write("MotorBike, " + vehicle.getBrand() + "," + vehicle.getMake() + "," + vehicle.getModelYear()
-                    + "," + vehicle.getPrice() + "," + vehicle.getColor() + "," + vehicle.getFuelType + "," + vehicle.getMileage() +
-                    "," + vehicle.getMass() + "," + vehicle.getCylinders() + "," + vehicle.getGasTankCapacity() + "," + vehicle.getStartType() + System.getProperty("line.separator"));
+            for (Vehicle v : vehicleList) {
+                if (v instanceof Car) {
+                    writer.write("Car, " + ((Car) v).getBrand() + "," + ((Car) v).getMake() + "," + ((Car) v).getModelYear()
+                            + "," + ((Car) v).getPrice() + "," + ((Car) v).getColor() + "," + ((Car) v).getFuelType() + "," + ((Car) v).getMileage() +
+                            "," + ((Car) v).getMass() + "," + ((Car) v).getCylinders() + "," + ((Car) v).getGasTankCapacity() + "," + ((Car) v).getStartType() + System.getProperty("line.separator"));
+                } else if (v instanceof Truck) {
+                	writer.write("Truck, " + ((Truck) v).getBrand() + "," + ((Truck) v).getMake() + "," + ((Truck) v).getModelYear()
+                    + "," + ((Truck) v).getPrice() + "," + ((Truck) v).getColor() + "," + ((Truck) v).getFuelType() + "," + ((Truck) v).getMileage() +
+                    "," + ((Truck) v).getMass() + "," + ((Truck) v).getCylinders() + "," + ((Truck) v).getGasTankCapacity() + "," + ((Truck) v).getStartType() + System.getProperty("line.separator"));
+                } else if (v instanceof MotorBike){
+                	writer.write("MotorBike, " + ((MotorBike) v).getBrand() + "," + ((MotorBike) v).getMake() + "," + ((MotorBike) v).getModelYear()
+                    + "," + ((MotorBike) v).getPrice() + "," + ((MotorBike) v).getColor() + "," + ((MotorBike) v).getFuelType() + "," + ((MotorBike) v).getMileage() +
+                    "," + ((MotorBike) v).getMass() + "," + ((MotorBike) v).getCylinders() + "," + ((MotorBike) v).getGasTankCapacity() + "," + ((MotorBike) v).getStartType() + System.getProperty("line.separator"));
                 } else {
-                	writer.write("SUV, " + vehicle.getBrand() + "," + vehicle.getMake() + "," + vehicle.getModelYear()
-                    + "," + vehicle.getPrice() + "," + vehicle.getColor() + "," + vehicle.getFuelType + "," + vehicle.getMileage() +
-                    "," + vehicle.getMass() + "," + vehicle.getCylinders() + "," + vehicle.getGasTankCapacity() + "," + vehicle.getStartType() + System.getProperty("line.separator"));
+                	writer.write("SUV, " + ((SUV) v).getBrand() + "," + ((SUV) v).getMake() + "," + ((SUV) v).getModelYear()
+                    + "," + ((SUV) v).getPrice() + "," + ((SUV) v).getColor() + "," + ((SUV) v).getFuelType() + "," + ((SUV) v).getMileage() +
+                    "," + ((SUV) v).getMass() + "," + ((SUV) v).getCylinders() + "," + ((SUV) v).getGasTankCapacity() + "," + ((SUV) v).getStartType() + System.getProperty("line.separator"));
                 }
             }
             return true;
@@ -194,7 +194,7 @@ public class VehicleManager {
             return false;
         }
     }
-	}
+	
 	
 	private boolean isVehicleType(Vehicle v, Class clazz) {
 		return v.getClass().equals(clazz);
@@ -210,50 +210,83 @@ public class VehicleManager {
 		return num;
 	}
 
-	public Vehicle getVehicleWIthHighestMaintenanceCost(double distance) {
-		double highest = 0;
-		double holder;
-		int highIndex = 0;
-		int index = 0;
-		Random random = new Random();
+//	public Vehicle getVehicleWIthHighestMaintenanceCost(double distance) {
+//		double highest = 0;
+//		double holder;
+//		int highIndex = 0;
+//		int index = 0;
+//
+//		for(Vehicle v : vehicleList) {
+//			holder = v.calculateMaintenaceCost(distance);
+//			if(holder>highest) {
+//				highest = holder;
+//				highIndex = index;
+//			} 
+//			index++;	
+//		}
+//		return vehicleList.get(highIndex);
+//	}
 
-		for(Vehicle v : vehicleList) {
-			holder = v.calculateMaintenaceCost(distance);
-			if(holder>highest) {
-				highest = holder;
-				highIndex = index;
-			} else if (holder == highest) {
-				index++;
-				if(random.nextInt(index)) {
-					highest = holder;
+	public Vehicle getVehicleWithHighestMaintenanceCost(double distance) {
+		Random random = new Random();
+		double highestMaintCost = 0;
+		Vehicle highMaintVehicle = null;
+		int count = 0;
+		
+		for (Vehicle v: vehicleList) {
+			double maintCost = v.calculateMaintenaceCost(distance);
+			if (maintCost > highestMaintCost) {
+				highMaintVehicle = v;
+				highestMaintCost = maintCost;
+				count = 1;
+			} else if (maintCost == highestMaintCost){
+				count ++;
+				if (random.nextInt(count) == 0) {
+					highMaintVehicle = v;
 				}
 			}
 		}
-		return vehicleList.get(highIndex);
-	}
-
-	public Vehicle getVehicleWithLowestMaintenanceCost(double distance) {
-		double lowest = 0;
-		double holder;
-		int lowIndex = 0;
-		int index = 0;
-		Random random = new Random();
-
-		for(Vehicle v : vehicleList) {
-			holder = v.calculateMaintenaceCost(distance);
-			if(holder<lowest) {
-				lowest = holder;
-				lowIndex = index;
-			} else if (holder == lowest) {
-				index++;
-				if(random.nextInt(lowIndex)) {
-					lowest = holder;
-				}
-			}
-		}
-		return vehicleList.get(lowIndex);
+		return highMaintVehicle;
 	}
 	
+//	public Vehicle getVehicleWithLowestMaintenanceCost(double distance) {
+//		double lowest = 0;
+//		double holder;
+//		int lowIndex = 0;
+//		int index = 0;
+//
+//		for(Vehicle v : vehicleList) {
+//			holder = v.calculateMaintenaceCost(distance);
+//			if(holder<lowest) {
+//				lowest = holder;
+//				lowIndex = index;
+//			}
+//			index++;
+//		}
+//		return vehicleList.get(lowIndex);
+//	}
+	
+	public Vehicle getVehicleWithLowestMaintenanceCost(double distance) {
+		Random random = new Random();
+		double lowestMaintCost = 100000;
+		Vehicle lowMaintVehicle = null;
+		int count = 0;
+		
+		for (Vehicle v: vehicleList) {
+			double maintCost = v.calculateMaintenaceCost(distance);
+			if (maintCost < lowestMaintCost) {
+				lowMaintVehicle = v;
+				lowestMaintCost = maintCost;
+				count = 1;
+			} else if (maintCost == lowestMaintCost){
+				count ++;
+				if (random.nextInt(count) == 0) {
+					lowMaintVehicle = v;
+				}
+			}
+		}
+		return lowMaintVehicle;
+	}
 	public ArrayList<Vehicle> getVehicleWithHighestFuelEfficiency(double distance, double fuelPrice) {
 		double highest = 0;
 		double holder;
@@ -322,6 +355,7 @@ public class VehicleManager {
 			return avg;
 		}
 	}
+}
 	
 	
 	//public void VehicleManager();
